@@ -1,0 +1,7 @@
+template(name='optionEdit')
+  form.option
+    input(name='option[_id]', value='{{_id}}', type='hidden')
+    input(name='option[name]', placeholder='Option Name', type='text', value='{{name}}')
+    button.button.success.save-option(type='submit') ✓ Save
+    button.button.cancel-option(type='submit') Cancel
+    button.button.alert.delete-option(type='button') × Delete

@@ -1,0 +1,10 @@
+template(name='canoodleShow')
+  section.canoodle
+    header
+      h2 {{name}}
+      time Created {{when}}
+      a(href="{{pathFor route='canoodle.edit'}}") Edit
+    .options
+      each options
+        if saved
+          +optionShow option=this editable='false'

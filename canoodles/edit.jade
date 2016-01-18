@@ -1,0 +1,14 @@
+template(name='canoodleEdit')
+  section.canoodle
+    header.clearfix
+      button.button.alert.float-right#delete(type='button') × Delete
+      h2
+        a(href="{{pathFor route='canoodle.show'}}") {{name}}
+      time Created {{when}}
+    .options
+      each options
+        if saved
+          +optionShow option=this editable='true'
+        else
+          +optionEdit
+      button#add-option(type='button') + Add Option

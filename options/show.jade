@@ -1,0 +1,7 @@
+template(name='optionShow')
+  with option
+    .option
+      strong {{name}}
+      if isTrue ../editable
+        button.button.small.edit-option(type='button') Edit
+        button.button.small.alert.delete-option(type='button') × Delete
