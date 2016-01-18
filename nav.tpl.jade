@@ -5,15 +5,15 @@ header#app-header.top-bar
   .top-bar-left
     ul.menu
       li.menu-text
-        a(href="{{pathFor route='canoodles.index'}}") Canoodle
+        a(href="{{pathFor route='noodles.index'}}") Noodle
   nav.top-bar-right
     ul.menu.dropdown.align-right(data-dropdown-menu='')
       if currentUser
         li.has-submenu
-          a(href='#') My Canoodles
+          a(href='#') My Noodles
           ul.submenu.menu(data-submenu='')
             li
-              a.button(href="{{pathFor route='canoodle.new'}}") + New
+              a.button(href="{{pathFor route='noodle.new'}}") + New
       else
         li.has-submenu
           a(href='#')
@@ -23,6 +23,6 @@ header#app-header.top-bar
             li.has-form
               +login
         li
-          a(href='#')
+          a(href="{{pathFor route='register'}}")
             i.fa.fa-user-plus
             | Create Account

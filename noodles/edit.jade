@@ -1,9 +1,9 @@
-template(name='canoodleEdit')
-  section.canoodle
+template(name='noodleEdit')
+  section.noodle
     header.clearfix
       button.button.alert.float-right#delete(type='button') × Delete
       h2
-        a(href="{{pathFor route='canoodle.show'}}") {{name}}
+        a(href="{{pathFor route='noodle.show'}}") {{name}}
       time Created {{when}}
     .options
       each options

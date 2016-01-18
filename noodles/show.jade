@@ -1,9 +1,9 @@
-template(name='canoodleShow')
-  section.canoodle
+template(name='noodleShow')
+  section.noodle
     header
       h2 {{name}}
       time Created {{when}}
-      a(href="{{pathFor route='canoodle.edit'}}") Edit
+      a(href="{{pathFor route='noodle.edit'}}") Edit
     .options
       each options
         if saved

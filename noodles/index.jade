@@ -1,0 +1,6 @@
+template(name='noodlesIndex')
+  ul
+    each noodles
+      li
+        a(href="{{pathFor route='noodle.show' _id=this._id}}") {{name}}
+        | – Created {{when}}

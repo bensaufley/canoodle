@@ -1,28 +1,28 @@
-function findCanoodle() {
-  return Canoodles.findOne(this.params._id);
+function findNoodle() {
+  return Noodles.findOne(this.params._id);
 }
 
-Router.route('/', { name: 'canoodles.index' });
-Router.route('/canoodles/new', { name: 'canoodle.new' });
-Router.route('/canoodles/:_id', {
-  name: 'canoodle.show',
-  data: findCanoodle
+Router.route('/', { name: 'noodles.index' });
+Router.route('/noodles/new', { name: 'noodle.new' });
+Router.route('/noodles/:_id', {
+  name: 'noodle.show',
+  data: findNoodle
 });
 
-Router.route('/canoodles/:_id/edit', {
-  name: 'canoodle.edit',
-  data: findCanoodle
+Router.route('/noodles/:_id/edit', {
+  name: 'noodle.edit',
+  data: findNoodle
 });
 
-Router.route('/canoodles', { where: 'server' })
-  .get(function() { return this.redirect('canoodles.index'); })
+Router.route('/noodles', { where: 'server' })
+  .get(function() { return this.redirect('noodles.index'); })
   .post(function() {
     var acceptedParams = {
         name: this.params.name,
         createdAt: new Date()
       },
-      _id = Canoodles.insert(acceptedParams);
-    this.redirect('canoodle.edit', { _id: _id });
+      _id = Noodles.insert(acceptedParams);
+    this.redirect('noodle.edit', { _id: _id });
   });
 
 Router.route('/create-account', { name: 'register' })

@@ -1,6 +1,0 @@
-template(name='canoodlesIndex')
-  ul
-    each canoodles
-      li
-        a(href="{{pathFor route='canoodle.show' _id=this._id}}") {{name}}
-        | – Created {{when}}

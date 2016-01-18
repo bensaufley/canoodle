@@ -1,4 +1,4 @@
-Canoodles = new Mongo.Collection('canoodles');
+Noodles = new Mongo.Collection('noodles');
 Options = new Mongo.Collection('options');
 Votes = new Mongo.Collection('votes');
 
