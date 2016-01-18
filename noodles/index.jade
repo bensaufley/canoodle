@@ -1,6 +1,17 @@
 template(name='noodlesIndex')
-  ul
-    each noodles
-      li
-        a(href="{{pathFor route='noodle.show' _id=this._id}}") {{name}}
-        | – Created {{when}}
+  .row
+    if currentUser
+      .medium-6.columns
+        h3 My Noodles
+        ul
+          each myNoodles
+            li
+              a(href="{{pathFor route='noodle.show' _id=this._id}}") {{name}}
+              | – Created {{when}}
+    .medium-6.columns
+      h3 All Noodles
+      ul
+        each noodles
+          li
+            a(href="{{pathFor route='noodle.show' _id=this._id}}") {{name}}
+            | – Created {{when}}

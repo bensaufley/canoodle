@@ -1,3 +1,24 @@
+var IRHooks = {
+  isLoggedIn: function() {
+    if (Meteor.loggingIn() || Meteor.user()) {
+      return true;
+    } else {
+      Session.set('displayMessages', [ { type: 'alert', text: '<p>Must log in to access this content.</p>' } ])
+      this.redirect('noodles.index');
+      this.next();
+    }
+  },
+  canAccess: function(_id) {
+    if (!Meteor.user() || Meteor.userId() != _id) {
+      Session.set('displayMessages', [ { type: 'alert', text: '<p>Must log in as proper use to access this content.</p>' } ])
+      this.redirect('noodles.index');
+      this.next();
+    } else {
+      return true;
+    }
+  }
+};
+
 function findNoodle() {
   return Noodles.findOne(this.params._id);
 }
@@ -11,6 +32,11 @@ Router.route('/noodles/:_id', {
 
 Router.route('/noodles/:_id/edit', {
   name: 'noodle.edit',
+  onBeforeAction: function() {
+    if (IRHooks.canAccess(findNoodle.call(this).createdBy)) {
+      this.next();
+    }
+  },
   data: findNoodle
 });
 

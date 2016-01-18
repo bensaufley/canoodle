@@ -9,6 +9,10 @@ header#app-header.top-bar
   nav.top-bar-right
     ul.menu.dropdown.align-right(data-dropdown-menu='')
       if currentUser
+        li
+          a#logout(href='#')
+            i.fa.fa-sign-out
+            | Log Out
         li.has-submenu
           a(href='#') My Noodles
           ul.submenu.menu(data-submenu='')

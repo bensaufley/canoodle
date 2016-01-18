@@ -1,6 +1,7 @@
 function createNoodle() {
   var acceptedParams = {
-      name: params.name
+      name: params.name,
+      createdBy: Meteor.userId()
     },
     _id = Noodles.insert(acceptedParams);
   this.redirect('noodle.edit', { _id: _id });
@@ -12,23 +13,28 @@ function getOptions() {
 
 if (Meteor.isClient) {
   Template.noodlesIndex.helpers({
+    myNoodles: function() {
+      if (!Meteor.user()) return;
+      return Noodles.find({ createdBy: Meteor.userId() }, { sort: { createdAt: -1 } });
+    },
     noodles: function() {
-      return Noodles.find({}, { sort: { createdAt: -1 }});
+      var params = {};
+      if (Meteor.user()) {
+        params.$not = { createdBy: Meteor.userId() };
+      }
+      return Noodles.find(params, { sort: { createdAt: -1 }});
     }
   });
 
   Template.noodleShow.helpers({
     options: getOptions,
     editable: function() {
-      return false;
+      return Meteor.user() && Meteor.userId() == this.createdBy;
     }
   });
 
   Template.noodleEdit.helpers({
-    options: getOptions,
-    editable: function() {
-      return false;
-    }
+    options: getOptions
   });
 
   Template.noodleEdit.events({

@@ -3,7 +3,8 @@ template(name='noodleShow')
     header
       h2 {{name}}
       time Created {{when}}
-      a(href="{{pathFor route='noodle.edit'}}") Edit
+      if editable
+        a(href="{{pathFor route='noodle.edit'}}") Edit
     .options
       each options
         if saved

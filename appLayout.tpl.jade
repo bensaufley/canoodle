@@ -1,3 +1,10 @@
-{{> nav}}
-main.column.row {{> yield}}
++nav
+main.column.row
+  if notifications
+    each notifications
+      .callout(class=type, data-closeable='')
+        != text
+        button.close-button(aria-label='Dismiss alert' type='button' data-close='')
+          span(aria-hidden='true') &times;
+  +yield
 footer Copyright &copy;#{year}
