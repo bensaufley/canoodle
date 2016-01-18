@@ -1,0 +1,9 @@
+h2 Create Account
+form#register(data-abide='')
+  input(type='email', name='email', placeholder='Email Address', required='required')
+  span.form-error Please enter a valid email address.
+  input(type='password', name='password', placeholder='Password (min 6 chars)', required='required', pattern='.{6,}')
+  span.form-error Must be a minimum of six characters long.
+  button.button(type='submit')
+    i.fa.fa-user-plus
+    | Create Account

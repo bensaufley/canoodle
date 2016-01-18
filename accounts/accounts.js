@@ -1,9 +1,9 @@
 if (Meteor.isClient) {
   Template.login.events({
-    'submit #login-form': function(e, t) {
+    'submit #login': function(e) {
       e.preventDefault();
-      var email = t.email.value,
-          password = t.password.value;
+      var email = e.target.email.value,
+          password = e.target.password.value;
       Meteor.loginWithPassword(email, password, function(err) {
         if (err) {
 
@@ -12,6 +12,15 @@ if (Meteor.isClient) {
         }
       });
       return false;
+    }
+  });
+
+  Template.register.events({
+    'submit #register': function(e) {
+      e.preventDefault();
+      var email = e.target.email.value.trim(),
+          password = e.target.password.value;
+      debugger;
     }
   });
 }

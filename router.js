@@ -25,6 +25,8 @@ Router.route('/canoodles', { where: 'server' })
     this.redirect('canoodle.edit', { _id: _id });
   });
 
+Router.route('/create-account', { name: 'register' })
+
 if (Meteor.isClient) {
   ApplicationController = RouteController.extend({
     layoutTemplate: 'appLayout',
