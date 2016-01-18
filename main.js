@@ -3,14 +3,14 @@ Options = new Mongo.Collection('options');
 Votes = new Mongo.Collection('votes');
 
 if (Meteor.isClient) {
-  Template.AppLayout.helpers({
+  Template.appLayout.helpers({
     year: function() {
       return new Date().getFullYear();
     }
   });
 
-  Template.AppLayout.onRendered(function() {
-    $(document).foundation()
+  Template.appLayout.onRendered(function() {
+    $(document).foundation();
   });
 
   Template.registerHelper('when', function() {

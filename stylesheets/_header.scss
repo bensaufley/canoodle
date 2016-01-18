@@ -1,0 +1,16 @@
+#login-form {
+  padding: map-get($grid-column-responsive-gutter, small)/2;
+
+  input {
+    margin-bottom: map-get($grid-column-responsive-gutter, small);
+    width: 100%;
+  }
+
+  @media #{$medium-up} {
+    padding: map-get($grid-column-responsive-gutter, medium)/2;
+
+    input {
+      margin-bottom: map-get($grid-column-responsive-gutter, medium)/2;
+    }
+  }
+}

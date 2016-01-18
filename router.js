@@ -27,7 +27,7 @@ Router.route('/canoodles', { where: 'server' })
 
 if (Meteor.isClient) {
   ApplicationController = RouteController.extend({
-    layoutTemplate: 'AppLayout',
+    layoutTemplate: 'appLayout',
 
     onBeforeAction: function () {
       console.log('app before hook!');
