@@ -8,7 +8,7 @@ function createNoodle() {
 }
 
 function getOptions() {
-  return Options.find({ noodle_id: this._id });
+  return Options.find({ noodle_id: this._id }, { sort: { _id: 1 } });
 }
 
 if (Meteor.isClient) {
@@ -27,9 +27,32 @@ if (Meteor.isClient) {
   });
 
   Template.noodleShow.helpers({
-    options: getOptions,
     editable: function() {
       return Meteor.user() && Meteor.userId() == this.createdBy;
+    },
+    options: getOptions,
+    votesets: function() {
+      var params = { canoodle_id: this._id };
+      if (Meteor.user()) {
+        params.createdBy = { $not: Meteor.userId() };
+      }
+      return VoteSets.find(params, { sort: { createdAt: 1 } });
+    },
+    myVoteset: function() {
+      var params;
+      if (Meteor.user()) {
+        params = { noodle_id: this._id, createdBy: Meteor.userId() };
+      } else {
+        params = { noodle_id: this._id, createdBy: null };
+      }
+      var voteset = VoteSets.findOne(params),
+          _id = (voteset && voteset._id) || ((params.saved = false), VoteSets.insert(params)),
+          options = Options.find({ noodle_id: this._id });
+      options.forEach(function(option) {
+        var params = { voteset_id: _id, option_id: option._id };
+        Votes.findOne(params) || ((params.value = null), Votes.insert(params));
+      });
+      return VoteSets.findOne({ _id: _id });
     }
   });
 

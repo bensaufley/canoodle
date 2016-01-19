@@ -1,11 +1,25 @@
 template(name='noodleShow')
+  header
+    h2 {{name}}
+    time Created {{when}}
+    if editable
+      a(href="{{pathFor route='noodle.edit'}}") Edit
   section.noodle
-    header
-      h2 {{name}}
-      time Created {{when}}
-      if editable
-        a(href="{{pathFor route='noodle.edit'}}") Edit
     .options
+      .blank
       each options
         if saved
           +optionShow option=this editable='false'
+      .blank
+    .votes
+      each votesets
+        if saved
+          +votesetShow
+        else
+          +votesetEdit
+      with myVoteset
+        if saved
+          +votesetShow
+        else
+          +votesetEdit
+      

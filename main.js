@@ -1,10 +1,12 @@
 Noodles = new Mongo.Collection('noodles');
 Options = new Mongo.Collection('options');
 Votes = new Mongo.Collection('votes');
+VoteSets = new Mongo.Collection('votesets');
 
 if (Meteor.isClient) {
   Meteor.subscribe('noodles');
   Meteor.subscribe('options');
+  Meteor.subscribe('votesets');
   Meteor.subscribe('votes');
 
   Template.appLayout.helpers({
@@ -66,6 +68,9 @@ if (Meteor.isServer) {
   Meteor.publish('options', function() {
     var userId = this.userId;
     return Options.find({$or: [ { saved: true }, { $where: function() { return db.noodles.findOne({ _id: this.noodle_id }).createdAt == userId } } ] });
+  });
+  Meteor.publish('votesets', function() {
+    return VoteSets.find({});
   });
   Meteor.publish('votes', function() {
     return Votes.find({});

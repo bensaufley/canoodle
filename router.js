@@ -56,6 +56,10 @@ Router.route('/create-account', { name: 'register' })
 if (Meteor.isClient) {
   ApplicationController = RouteController.extend({
     layoutTemplate: 'appLayout',
+    loadingTemplate: 'loading',
+    waitOn: function() {
+      return function() { return !Meteor.loggingIn(); };
+    },
 
     onBeforeAction: function () {
       console.log('app before hook!');

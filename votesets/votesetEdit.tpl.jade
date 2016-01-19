@@ -1,0 +1,9 @@
+form.voteset(class=currentUserClass, data-abide='')
+  .user
+    input(type='text', name='name', placeholder='Name', pattern='.+', required='required')
+  each votes
+    +voteEdit
+  .save
+    button.button.success.expanded(type='submit')
+      i.fa.fa-check
+      | Save

@@ -1,0 +1,7 @@
+.vote(title=optionName, class=valueClass)
+  input(type='radio', name=inputName, value='Yes', id="{{checkboxId 'Yes'}}" checked="{{isChecked 'Yes'}}")
+  label(for="{{checkboxId 'Yes'}}") Yes
+  input(type='radio', name=inputName, value='(Maybe)', id="{{checkboxId '(Maybe)'}}" checked="{{isChecked '(Maybe)'}}")
+  label(for="{{checkboxId '(Maybe)'}}") (Maybe)
+  input(type='radio', name=inputName, value='No', id="{{checkboxId 'No'}}" checked="{{isChecked 'No'}}")
+  label(for="{{checkboxId 'No'}}") No
